@@ -1,5 +1,5 @@
-AuthType Basic
-AuthName "Restricted Files"
-AuthBasicProvider file
-AuthUserFile D:\xampp-portable-win32-5.5.28-0-VC11\xampp\apache\bin\passw
-Require valid-user
+# AuthType Basic
+# AuthName "Restricted Files"
+# AuthBasicProvider file
+# AuthUserFile D:\xampp-portable-win32-5.5.28-0-VC11\xampp\apache\bin\passw
+# Require valid-user
