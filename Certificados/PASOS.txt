@@ -1,0 +1,36 @@
+
+0) Crear los virtual host en extra/httpd-ssl.conf
+
+Listen 443
+<VirtualHost *:443>
+ServerName localhost:443
+DocumentRoot "C:/xampp/htdocs”
+SSLEngine on
+SSLProtocol TLSv1
+SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
+SSLCertificateFile "conf/ssl.crt/miw.crt"
+SSLCertificateKeyFile "conf/ssl.key/miw.key"
+</VirtualHost>
+
+1)
+set openssl_conf=D:\xampp-portable-win32-5.5.28-0-VC11\xampp\apache\conf\openssl.cnf
+
+2)
+openssl genrsa -out miw.key
+
+3)
+openssl req -new -key miw.key -out miw.csr
+
+4)
+openssl x509 -CA CAMIW.crt -CAkey CAMIW.key -req -extfile miw.cnf -in miw.csr -days 365 -CAcreateserial -sha256 -out miw.crt
+
+5)Colocar el certificado (servidor.crt) y la clave privada
+(servidor.key) en las carpetas de configuración de Apache. httpd-ssl.conf
+
+
+Para permitir pedir el certificado solo cuando se accede a logincert.php
+<Files "logincert.php"
+SSLVeryfyClient required
+SSLVeryfyDepth 3
+SSLOptions +StdEnvVars
+</Files>
